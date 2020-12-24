@@ -1,0 +1,323 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01EWRFZVE1IIY7RSn7nX8zpU7MBeCGDa6W2",
+    "name": "Perimeter Block",
+    "title": "Perimeter Block",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Umbrella",
+          "scope": "local",
+          "name": "Module Name",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01FREHI8E38A25mfvloW1jbhA09rRZdxOq7",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "observable_type",
+          "type": "datatype.string",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01EWRFZV2RWM91fBKazb12HUwWUfFk9GKK8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "observable_value",
+          "type": "datatype.string",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01EWRFZV2RTR72flvJaFX9nTZFO34IpkV9X",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Perimeter Block",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": true,
+        "target_group": {
+          "target_group_id": "target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH",
+          "run_on_all_targets": false,
+          "selected_target_types": [
+            "web-service.endpoint"
+          ],
+          "use_criteria": {
+            "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+            "conditions": [
+              {
+                "operator": "eqi",
+                "left_operand": "$targetgroup.web-service endpoint.input.display_name$",
+                "right_operand": "CTR_API"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01EWRG0P0334F43LSGhJRdXvacHlOiuR6mQ",
+        "name": "CTRGenerateAccessToken",
+        "title": "CTRGenerateAccessToken",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "CTRGenerateAccessToken",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target_group_criteria": true,
+            "target_group": {
+              "run_on_all_targets": false,
+              "use_criteria": {
+                "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                "conditions": [
+                  {
+                    "left_operand": "$targetgroup.web-service endpoint.input.display_name$",
+                    "operator": "eqi",
+                    "right_operand": "CTR_For_Access_Token"
+                  }
+                ]
+              }
+            }
+          },
+          "workflow_id": "definition_workflow_01779LB6MV0P02kvka9TGV5cEam84NrCTy4"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01ILYS7ONUIRC2JdfRW2g6cV77ZH0xVzrms",
+        "name": "Execute Python Script",
+        "title": "Execute Python Script",
+        "type": "python3.script",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Execute Python Script",
+          "script": "dsfngsdfgdfsgfdg\nfdg\ndfg\nfd\ngfd\ng",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01FRKQO5F34CL2WIwErUukLUiVnHbZ1hSBb",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01FRKQOALBR9F0Vf4zxp6JlrGiEYp3cmGHk",
+            "name": "Condition Branch",
+            "title": "if observable type == domain",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01EWRFZVE1IIY7RSn7nX8zpU7MBeCGDa6W2.input.variable_workflow_01EWRFZV2RWM91fBKazb12HUwWUfFk9GKK8$",
+                "operator": "eq",
+                "right_operand": "domain"
+              },
+              "continue_on_failure": false,
+              "display_name": "if observable type == domain",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01FT93975LKSO5R85dl9qrYRiCEmxvgeI67",
+                "name": "CTR List Actions",
+                "title": "CTR List Actions",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "CTR List Actions",
+                  "input": {
+                    "variable_workflow_01DBYEK861JR84w4pjFDDI1bkoc1GoFxUzy": "$workflow.definition_workflow_01EWRFZVE1IIY7RSn7nX8zpU7MBeCGDa6W2.input.variable_workflow_01EWRFZV2RWM91fBKazb12HUwWUfFk9GKK8$",
+                    "variable_workflow_01DBYF0AOVGVR20gz1OEgDx7i2Y2lnrr4mT": "$workflow.definition_workflow_01EWRFZVE1IIY7RSn7nX8zpU7MBeCGDa6W2.input.variable_workflow_01EWRFZV2RTR72flvJaFX9nTZFO34IpkV9X$",
+                    "variable_workflow_01DBZ4EAOYVFJ0yY3VzkdOSJmyXf0X5OmfZ": "$activity.definition_activity_01EWRG0P0334F43LSGhJRdXvacHlOiuR6mQ.output.variable_workflow_01BNOOXA3G6MV1PGAvsfZOKDdMYcE6XS726$"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target_group": true
+                  },
+                  "workflow_id": "definition_workflow_01DBY5MO9LF981MXZeedBSbaIpOSx3NRF2Q"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FT940JBKBI05OJGD7NwPdbRNWrsrGVMUB",
+                "name": "For Each",
+                "title": "For Each",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each",
+                  "skip_execution": false,
+                  "source_array": "$activity.definition_activity_01FT93975LKSO5R85dl9qrYRiCEmxvgeI67.output.variable_workflow_01FT8OC96DB0U4aLWBd2bdnLJ6FFKgmIP5D$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01FT94E0A5T5I552fn78cxv3GdXJndhKWjp",
+                    "name": "Condition Block",
+                    "title": "If Umbrella module configured",
+                    "type": "logic.if_else",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "If Umbrella module configured",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "blocks": [
+                      {
+                        "unique_name": "definition_activity_01FT94E5P2O2M7C3ubbhfnKz0JUiXzAXkkP",
+                        "name": "Condition Branch",
+                        "title": "Condition Branch",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": "$activity.definition_activity_01FT940JBKBI05OJGD7NwPdbRNWrsrGVMUB.input.source_array[@].ModuleName$",
+                            "operator": "eq",
+                            "right_operand": "$workflow.definition_workflow_01EWRFZVE1IIY7RSn7nX8zpU7MBeCGDa6W2.local.variable_workflow_01FREHI8E38A25mfvloW1jbhA09rRZdxOq7$"
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "Condition Branch",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_01FT92CZAKJU34UxHxtae6R5Mu6xIkcP1ss",
+                            "name": "CTR Trigger an Action",
+                            "title": "CTR Trigger an Action",
+                            "type": "workflow.atomic_workflow",
+                            "base_type": "subworkflow",
+                            "properties": {
+                              "continue_on_failure": false,
+                              "display_name": "CTR Trigger an Action",
+                              "input": {
+                                "variable_workflow_01DBZ3G7NXMN11fYkVE1L31HquiZiRSUbwM": "$activity.definition_activity_01EWRG0P0334F43LSGhJRdXvacHlOiuR6mQ.output.variable_workflow_01BNOOXA3G6MV1PGAvsfZOKDdMYcE6XS726$",
+                                "variable_workflow_01FT2RJ1NWO4R6TumImr85cBzHvKu4L9e6O": "$workflow.definition_workflow_01EWRFZVE1IIY7RSn7nX8zpU7MBeCGDa6W2.local.variable_workflow_01FREHI8E38A25mfvloW1jbhA09rRZdxOq7$",
+                                "variable_workflow_01FT2RPI43IZM5eI3FQuSTsrXSLjKJc6Eck": "$workflow.definition_workflow_01EWRFZVE1IIY7RSn7nX8zpU7MBeCGDa6W2.input.variable_workflow_01EWRFZV2RWM91fBKazb12HUwWUfFk9GKK8$",
+                                "variable_workflow_01FT2RVLUBET13KqtxBaqHVOVUGoSL2B1QO": "$workflow.definition_workflow_01EWRFZVE1IIY7RSn7nX8zpU7MBeCGDa6W2.input.variable_workflow_01EWRFZV2RTR72flvJaFX9nTZFO34IpkV9X$",
+                                "variable_workflow_01FT2SJWQ8ADI6E0B7YzeEIFTktrtvGcvpy": "$activity.definition_activity_01FT940JBKBI05OJGD7NwPdbRNWrsrGVMUB.input.source_array[@].Action$"
+                              },
+                              "runtime_user": {
+                                "target_default": true
+                              },
+                              "skip_execution": false,
+                              "target": {
+                                "use_workflow_target_group": true
+                              },
+                              "workflow_id": "definition_workflow_01DBYOOG3TVJ16RWI31U4L3BrS8XSQHuhM7"
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_01EI33LMFFL7N5eTQLsOOJIrxdlSOHb7r3r",
+      "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m"
+    ]
+  },
+  "categories": {
+    "category_01EI33LMFFL7N5eTQLsOOJIrxdlSOHb7r3r": {
+      "unique_name": "category_01EI33LMFFL7N5eTQLsOOJIrxdlSOHb7r3r",
+      "name": "SecureX",
+      "title": "SecureX",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m": {
+      "unique_name": "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m",
+      "name": "response",
+      "title": "response",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "target_groups": {
+    "target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH": {
+      "unique_name": "target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH",
+      "name": "Default TargetGroup",
+      "title": "Default TargetGroup",
+      "type": "generic.target_group",
+      "base_type": "target_group",
+      "version": "1.0.0",
+      "targets": [
+        {
+          "data_target_type": "web-service.endpoint",
+          "view_target_type": "web-service.endpoint",
+          "include_all_targets": true
+        },
+        {
+          "data_target_type": "email.smtp_endpoint",
+          "view_target_type": "email.smtp_endpoint",
+          "include_all_targets": true
+        }
+      ],
+      "object_type": "target_group"
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01779LB6MV0P02kvka9TGV5cEam84NrCTy4",
+    "definition_workflow_01DBYOOG3TVJ16RWI31U4L3BrS8XSQHuhM7",
+    "definition_workflow_01DBY5MO9LF981MXZeedBSbaIpOSx3NRF2Q"
+  ]
+}
