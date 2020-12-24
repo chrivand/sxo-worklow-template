@@ -50,13 +50,13 @@
 
 ![](screenshots/copy-paste.png)
 
-### Import workflow
+### Import main workflow
 
 1. In the left pane menu, select **Workflows**. Click on **IMPORT** to import the workflow.
 
 2. Click on **Browse** and copy paste the content of the [name-json-file.json](https://raw.githubusercontent.com/github-username/name-of-repo/master/name-json-file.json) file inside of the text window.  Select **IMPORT AS A NEW WORKFLOW (CLONE)** and click on **IMPORT**.
 
-3. Next steps, like updating targets / account keys.
+3. Next steps, like updating targets / account keys and setting a trigger / running the workflow.
 
 ## Notes
 
