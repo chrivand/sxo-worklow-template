@@ -28,7 +28,7 @@ Please continue your reading in this [white paper](https://www.cisco.com/c/en/us
 Currently there is no DevNet sandbox yet, however you can find all options to try out SecureX orchestration [here](https://developer.cisco.com/learning/lab/Cisco-SecureX-101-lab/step/1)!
 
 ## Links to DevNet Learning Labs
-Please try out this DevNet learning lab to try this yourself: https://developer.cisco.com/learning/modules/SecureX-orchestration
+Please try out [this DevNet learning lab](https://developer.cisco.com/learning/modules/SecureX-orchestration) to try this yourself. 
 
 ## Solutions on Ecosystem Exchange
 Please check out related solutions on [DevNet Ecosystem Exchange](https://developer.cisco.com/ecosystem/solutions/#key=securex).
